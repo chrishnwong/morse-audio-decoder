@@ -102,15 +102,6 @@ def encode(list1):
     #record()
     
 def record():
-    """
-    Record a word or words from the microphone and 
-    return the data as an array of signed shorts.
-
-    Normalizes the audio, trims silence from the 
-    start and end, and pads with 0.5 seconds of 
-    blank sound to make sure VLC et al can play 
-    it without getting chopped off.
-    """
     num_silent = 0
     snd_started = False
     oncount = 0
@@ -175,25 +166,6 @@ def record():
         else:
             timelist+="0"
             num_silent += 1
-        
-        """if status == 1:
-            if oncount  > 0 or not snd_started:
-                snd_started = True
-                oncount += 1
-            elif offcount > ALLOWANCE:
-                oncount += 1
-                timelist.append(offcount)
-                offcount = 0
-                num_silent = 0
-        elif snd_started:
-            if offcount > 0:
-                offcount += 1
-            elif oncount > ALLOWANCE:
-                offcount += 1
-                timelist.append(oncount)
-                oncount = 0
-
-            num_silent += 1"""
             
         if num_silent > WINDOW and "1" in timelist:
             #print(timelist)
